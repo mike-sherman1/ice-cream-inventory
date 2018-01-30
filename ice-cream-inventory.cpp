@@ -1,24 +1,28 @@
-// midtermproject.cpp : Ice Cream Inventory Midterm Project
+// midtermproject.cpp: Ice Cream Inventory Midterm Project
 // Author: Mike Sherman and Paula Lindley
 // Warren County Community College
-// Date Modified: Thursday November 20, 2014 at 5:45 PM
-// Midterm Project
+// Date Modified: 1/30/2018 at 1:48 
 
-//TO DO: format
+//TO DO: error catching
 
-#include "stdafx.h"
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
+
+void header();
 
 int main()
 {
 	const float NJ_TAX_RATE = 0.07;
 	int menuChoice, amountTendered, exitChoice, vanillaCount, chocolateCount, strawberryCount, vanillaSubtotal, chocolateSubtotal, strawberrySubtotal, orderSubtotal, salesTax, grandTotal, changeDue;
 	menuChoice = amountTendered = exitChoice = vanillaCount = chocolateCount = strawberryCount = vanillaSubtotal = chocolateSubtotal = strawberrySubtotal = orderSubtotal = salesTax = grandTotal = changeDue = 0;
+	
+	//main menu
 	while (menuChoice != -1) {
 		system("cls");
-		cout << "Please select the ice cream flavor you wish to order by inputting 1, 2, or 3:" << endl << endl << "1: Vanilla" << endl << "2: Chocolate" << endl << "3: Strawberry" << endl << endl;
+		header();
+		cout << "Please select the ice cream flavor you wish to order by inputting 1, 2, or 3:" << endl << endl << "1: Vanilla ($2)" << endl << "2: Chocolate ($2)" << endl << "3: Strawberry ($2)" << endl << endl;
 		cin >> menuChoice;
 		switch (menuChoice)
 		{
@@ -36,24 +40,18 @@ int main()
 			break;
 		default:
 			cout << endl << "Invalid selection! Please try again." << endl << endl;
-		}   //end switch
-
+		}
 		cout << "Enter 1 to order another cone, or enter -1 to continue to payment." << endl << endl;
 		cin >> menuChoice;
-	}    //end while
+	}    //end main menu while
 
 
 	vanillaSubtotal = vanillaCount * 2;
 	chocolateSubtotal = chocolateCount * 2;
 	strawberrySubtotal = strawberryCount * 2;
+	
 	system("cls");
-	cout << setfill('*') << setw(60) << "*" << endl;
-	cout << "*" << setfill(' ') << setw(58) << "Welcome to the Ice Cream Inventory v. 1.0        " << "*" << endl;
-	cout << "*" << setfill(' ') << setw(58) << "Created by Mike Sherman and Paula Lindley         " << "*" << endl;
-	cout << "*" << setfill(' ') << setw(58) << "at Warren County Community College            " << "*" << endl;
-	cout << "*" << setfill(' ') << setw(58) << "Date Created: Thurs. Nov. 20th, 2014           " << "*" << endl;
-	cout << setfill('*') << setw(60) << "*" << endl << endl;
-
+	header();
 	cout << setfill(' ') << setw(58) << "Your order                         " << endl;
 	cout << setfill('-') << setw(60) << "-" << endl << endl;
 	cout << "Vanilla cones ordered: " << vanillaCount << ", $" << vanillaSubtotal << endl;
@@ -70,13 +68,11 @@ int main()
 	grandTotal = orderSubtotal + salesTax;
 	cout << "Grand total: $" << grandTotal << endl << endl;
 
-	do 
-	{
+	do {
 	cout << "Enter amount tendered:" << endl;
 	cin >> amountTendered;
 	changeDue = amountTendered - grandTotal; 
-	
-	} while (changeDue < 0)
+	} while (changeDue < 0);
 	
 	return 0;
 }
